@@ -1,0 +1,363 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load socialaccount %}
+{% load custom_filters %}
+{% block body %}
+<div class="flex flex-row p-10">
+  <!-- 좌측 사용자 정보칸 -->
+  <div class="w-1/4 h-2/4 bg-white border border-gray-200 rounded-lg shadow mr-5">
+    <div class="flex justify-end px-4 pt-4">
+      {% if request.user == person %}
+        <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg text-sm p-1.5" type="button">
+          <i class="fa-solid fa-ellipsis"></i>
+        </button>
+        <!-- Dropdown menu -->
+        <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+          <ul class="py-2" aria-labelledby="dropdownButton">
+            <li>
+              <a href="{% url 'accounts:set_default_profile_image' %}" class="block px-4 py-2 text-sm text-black-600 hover:bg-gray-100">기본 이미지로 변경</a>
+            </li>
+            <li>
+              <a href="{% url 'accounts:update' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">회원정보 수정</a>
+            </li>
+            {% if is_kakao_connected %}
+              <li>
+                <a href="{% url 'accounts:kakao_disconnect' %}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">카카오 연결 끊기</a>
+              </li>
+            {% else %}
+              <li>
+                <a href="{% url 'accounts:delete' %}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">회원탈퇴</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      {% else %}
+        <div class="inline-block text-gray-500 p-3"></div>
+      {% endif %}
+    </div>
+    <div class="flex flex-col items-center pb-10">
+      <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ person.profile_image.url }}" alt=''>
+      <h5 class="mb-1 text-xl font-medium text-gray-900">{{ person.username }}</h5>
+      <span class="text-sm text-gray-500">팔로잉 <span id="followings-count">{{ person.followings.all.count }}</span> / 팔로워 <span id="followers-count">{{ person.followers.all.count }}</span></span>
+      <!-- 팔로우 기능 -->
+      {% if request.user != person %}
+        <div class="flex mt-4 space-x-3 md:mt-6">
+          <form id="follow-form" data-user-id="{{ person.pk }}">
+            {% csrf_token %}
+            {% if request.user in person.followers.all %}
+              <input type="submit" value="Unfollow" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+            {% else %}
+              <input type="submit" value="Follow" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+            {% endif %}
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <!-- 우측 리뷰, 좋아요, 팔로잉, 팔로워 정보 -->
+  <div class="w-full bg-white border border-gray-200 rounded-lg shadow">
+    <!-- 상단탭 -->
+    <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50" id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
+      <li class="mr-2">
+        <a href="{% url 'accounts:profile' username=username %}?tab=reviews">
+          <button id="review-tab" data-tabs-target="#review" type="button" role="tab" aria-controls="review" aria-selected="{% if active_tab == 'reviews' %}true{% else %}false{% endif %}" class="inline-block p-4 text-blue-600 rounded-tl-lg hover:bg-gray-100 {% if active_tab == 'like_reviews' %}active{% endif %}">내가 쓴 리뷰 <span>({{ person.review_set.all|length }})</span></button>
+        </a>
+      </li>
+      <li class="mr-2">
+        <a href="{% url 'accounts:profile' username=username %}?tab=like_reviews">
+          <button id="like-tab" data-tabs-target="#like" type="button" role="tab" aria-controls="like" aria-selected="{% if active_tab == 'like_reviews' %}true{% else %}false{% endif %}" class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 {% if active_tab == 'like_reviews' %}active{% endif %}">내가 좋아요한 리뷰 <span>({{ person.like_reviews.all|length }})</span></button>
+        </a>
+      </li>
+      <li class="mr-2">
+          <button id="following-tab" data-tabs-target="#following" type="button" role="tab" aria-controls="following" aria-selected="false" class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100">팔로잉 목록</button>
+      </li>
+      <li class="mr-2">
+        <button id="follower-tab" data-tabs-target="#follower" type="button" role="tab" aria-controls="follower" aria-selected="false" class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100">팔로워 목록</button>
+      </li>
+    </ul> 
+      <!-- 내가 쓴 리뷰 -->
+      <div id="defaultTabContent">
+      <div class="p-4 bg-white rounded-lg" id="review" role="tabpanel" aria-labelledby="review-tab">
+        <div class="mypage_myreview ">
+          {% if reviews %}
+            {% for review in page_obj %}
+              <div class="myreviews">
+                <a href="{% url 'reviews:review_detail' review.pk %}">
+                  {% if review.review_photo %}
+                    <div class="mypage_img_container">
+                      <img class="mypage_img rounded-lg" src="{{ review.review_photo.url }}" alt="이미지 없음">
+                    </div>
+                  {% else %}
+                    <div class="mypage_img_container">
+                      <img class="mypage_img rounded-lg" src="{% static 'img/noimg.jpg' %}" alt="이미지 없음">
+                    </div>
+                  {% endif %}
+                  <div class="mypage_text">
+                    <div class="mypage_review_title">
+                      <p class="mypage_title">{{ review.review_title }}</p>
+                      {{ review.created_at|date:"Y-m-d"}}
+                    </div>
+                    <div class="mypage_score">
+                      {% for i in 5|star_range %}
+                        {% if review.score > i %}
+                          <i class="fa-solid fa-star" style="color: #fad900;"></i>
+                        {% else %}
+                          <i class="fa-solid fa-star" style="color: #808080;"></i>
+                        {% endif %}
+                      {% endfor %}
+                      <p class="mypage_score_text">{{ review.score }}</p>
+                    </div>
+                    <p class="mypage_content">{{ review.content }}</p>
+                  </div>
+                  {% if request.user == review.user %}
+                    <div class="mypage_text_funtion">
+                      <form action="{% url 'reviews:review_delete' review.pk %}" method="POST" class="mypage_delete">
+                        {% csrf_token %}
+                        <button type="submit">
+                          <i class="fa-solid fa-x" style="color: #000000;"></i>
+                        </button>
+                      </form>
+                      <a href="{% url 'reviews:review_update' review.pk %}">수정</a>
+                    </div>
+                  {% endif %}
+                </a>
+              </div>
+              <hr class="mypage_div_line">
+            {% endfor %}
+            <!-- 페이지네이션 표시 -->
+            {% include 'pagination.html' with page_obj=page_obj %}
+        {% else %}
+          <p>내가 쓴 리뷰가 없습니다.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <!-- 내가 좋아요 한 리뷰 -->
+    <div class="p-4 bg-white rounded-lg" id="like" role="tabpanel" aria-labelledby="like-tab">
+      <div class="mypage_myreview">
+        {% if person.like_reviews.all %}
+          {% for review in page_obj %}
+            <div class="myreviews">
+              <a href="{% url 'reviews:review_detail' review.pk %}">
+                {% if review.review_photo %}
+                  <div class="mypage_img_container">
+                    <img class="mypage_img rounded-lg" src="{{ review.review_photo.url }}" alt="이미지 없음">
+                  </div>
+                {% else %}
+                  <div class="mypage_img_container">
+                    <img class="mypage_img rounded-lg" src="{% static 'img/noimg.jpg' %}" alt="이미지 없음">
+                  </div>
+                {% endif %}
+                <div class="mypage_text">
+                  <div class="mypage_review_title">
+                    <p class="mypage_title">{{ review.review_title }}</p>
+                    {{ review.created_at|date:"Y-m-d"}}
+                  </div>
+                  <div class="mypage_score">
+                    {% for i in 5|star_range %}
+                      {% if review.score > i %}
+                        <i class="fa-solid fa-star" style="color: #fad900;"></i>
+                      {% else %}
+                        <i class="fa-solid fa-star" style="color: #808080;"></i>
+                      {% endif %}
+                    {% endfor %}
+                    <p class="mypage_score_text">{{ review.score }}</p>
+                  </div>
+                  <p class="mypage_content">{{ review.content }}</p>
+                </div>
+              </a>
+            </div>
+            <hr class="mypage_div_line">
+          {% endfor %}
+            <!-- 페이지네이션 표시 -->
+            {% include 'pagination.html' with page_obj=page_obj %}          
+        {% else %}
+          <p>좋아요 한 리뷰가 없습니다.</p>
+        {% endif %}
+      </div>
+    </div>
+
+      <!-- 팔로잉 목록 -->
+      <div class="p-4 bg-white rounded-lg" id="following" role="tabpanel" aria-labelledby="following-tab">
+        <div class="flow-root">
+          <ul role="list" class="divide-y divide-gray-200">
+            {% for one in person.followings.all %}
+              <li class="py-3">
+                <div class="flex items-center space-x-4">
+                  <div class="flex-shrink-0">
+                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ one.profile_image.url }}" alt=''>
+                    {% comment %} <img class="w-8 h-8 rounded-full" src="https://picsum.photos/200" alt=""> {% endcomment %}
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <a href="{% url 'accounts:profile' one.username %}">
+                      <p class="text-sm font-medium text-gray-900 truncate">
+                      {{ one.username }}
+                      </p>
+                    </a>
+                    <p class="text-sm text-gray-500 truncate">
+                      <span>팔로잉 <span id="f_followings-count-{{ one.pk }}">{{ one.followings.all.count }}</span> / 팔로워 <span id="f_followers-count-{{ one.pk }}"> {{ one.followers.all.count }}</span></span>
+                    </p>
+                  </div>
+                  <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                    {% if request.user != one %}
+                      <form id="following-form-{{ one.pk }}" data-user-id="{{ one.pk }}">
+                        {% csrf_token %}
+                          {% if request.user in one.followings.all %}
+                            <input type="submit" value="Unfollow" class="ininline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                          {% else %}
+                            <input type="submit" value="Follow" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                          {% endif %}
+                      </form>
+                    {% endif %}
+                  </div>
+                </div>
+              </li>
+            {% endfor %}           
+          </ul>
+        </div>
+      </div>
+
+      <!-- 팔로워 목록 -->
+      <div class="p-4 bg-white rounded-lg" id="follower" role="tabpanel" aria-labelledby="follower-tab">
+        <div class="flow-root">
+          <ul role="list" class="divide-y divide-gray-200">
+            {% for one in person.followers.all %}
+              <li class="py-3">
+                <div class="flex items-center space-x-4">
+                  <div class="flex-shrink-0">
+                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ one.profile_image.url }}" alt=''>
+                    {% comment %} <img class="w-8 h-8 rounded-full" src="https://picsum.photos/200" alt=""> {% endcomment %}
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <a href="{% url 'accounts:profile' one.username %}">
+                      <p class="text-sm font-medium text-gray-900 truncate">
+                      {{ one.username }}
+                      </p>
+                    </a>
+                    <p class="text-sm text-gray-500 truncate">
+                      <span>팔로잉 <span id="ff_followings-count-{{ one.pk }}">{{ one.followings.all.count }}</span> / 팔로워 <span id="ff_followers-count-{{ one.pk }}"> {{ one.followers.all.count }}</span></span>
+                    </p>
+                  </div>
+                  <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                    {% if request.user != one %}
+                      <form id="following-form-{{ one.pk }}" data-user-id="{{ one.pk }}">
+                        {% csrf_token %}
+                          {% if request.user in one.followings.all %}
+                            <input type="submit" value="Unfollow" class="ininline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                          {% else %}
+                            <input type="submit" value="Follow" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                          {% endif %}
+                      </form>
+                    {% endif %}
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
+
+{% block js %}
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    
+    const form = document.querySelector('#follow-form')
+
+    if (form) {
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+      form.addEventListener('submit', function (event) {
+        event.preventDefault()
+        const userId = event.target.dataset.userId
+        axios({
+          method: 'post',
+          url: `/accounts/follow/${userId}/`,
+          headers: {'X-CSRFToken': csrftoken},
+        })
+        .then((response) => {
+          const isFollowed = response.data.is_followed
+          const followBtn = document.querySelector('#follow-form > input[type=submit]')
+
+          if (isFollowed === true) {
+            followBtn.value = 'Unfollow'
+          } else {
+            followBtn.value = 'Follow'
+          }
+          const followingsCountTag = document.querySelector('#followings-count')
+          const followersCountTag = document.querySelector('#followers-count')
+          const followingsCountData = response.data.followings_count
+          const followersCountData = response.data.followers_count
+          followingsCountTag.textContent = followingsCountData
+          followersCountTag.textContent = followersCountData
+
+        })
+      })
+    }
+
+
+    const f_forms = document.querySelectorAll('[id^="following-form-"]')
+    const f_csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+    f_forms.forEach(function(f_form) {
+      f_form.addEventListener('submit', function (event) {
+        event.preventDefault()
+        const userId = event.target.dataset.userId
+        axios({
+          method: 'post',
+          url: `/accounts/follow/${userId}/`,
+          headers: {'X-CSRFToken': f_csrftoken},
+        })
+        .then((response) => {
+          const isFollowed = response.data.is_followed
+          const f_followBtn = event.target.querySelector('[id^="following-form-"] > input[type=submit]')
+
+          if (isFollowed === true) {
+            f_followBtn.value = 'Unfollow'
+          } else {
+            f_followBtn.value = 'Follow'
+          }
+
+          const f_followingsCountTag = document.querySelector(`#f_followings-count-${userId}`);
+          const f_followersCountTag = document.querySelector(`#f_followers-count-${userId}`);
+          const f_followingsCountData = response.data.followings_count;
+          const f_followersCountData = response.data.followers_count;
+          f_followingsCountTag.textContent = f_followingsCountData;
+          f_followersCountTag.textContent = f_followersCountData;
+
+
+          const ff_followingsCountTag = document.querySelector(`#ff_followings-count-${userId}`);
+          const ff_followersCountTag = document.querySelector(`#ff_followers-count-${userId}`);
+          const ff_followingsCountData = response.data.followings_count;
+          const ff_followersCountData = response.data.followers_count;
+          ff_followingsCountTag.textContent = ff_followingsCountData;
+          ff_followersCountTag.textContent = ff_followersCountData;
+          
+
+          const followingsCountTag = document.querySelector('#followings-count');
+          const followersCountTag = document.querySelector('#followers-count');
+          let followingsCountData = parseInt(followingsCountTag.textContent);
+          let followersCountData = parseInt(followersCountTag.textContent);
+
+          if ( '{{ username }}' === '{{ request.user }}') {
+            // 팔로우 상태에 따라 팔로잉 및 팔로워 숫자 업데이트
+            if (isFollowed === true) {
+              // 이미 팔로우 상태일 경우 언팔로우로 팔로잉 카운트만 감소
+              followingsCountData++;
+            } else {
+              // 팔로우 상태가 아닐 경우 팔로우로 팔로잉 카운트만 증가
+              followingsCountData--;
+            }
+          
+            followingsCountTag.textContent = followingsCountData;
+            followersCountTag.textContent = followersCountData;
+          }
+          
+        })
+      })
+    })
+    </script>
+  </script>
+{% endblock js %}
