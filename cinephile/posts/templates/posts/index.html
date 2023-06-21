@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block style %}
+  main {
+    padding-top: 3rem;
+  }
+{% endblock style %}
+
+{% block header %}
+  <section class="header">
+    <div class="container">
+      <div class="category">
+        <ul class="tab" id="pills-tab" role="tablist">
+          <li role="presentation">
+            <button onclick="location.href='{% url 'posts:index' %}'" class="tab-button active" id="button-home-tab" data-bs-toggle="pill" data-bs-target="#button-home" type="button" role="tab" aria-controls="button-home" aria-selected="true">홈</button>
+          </li>
+          <li role="presentation">
+            <button class="tab-button" id="button-romance-tab" data-bs-toggle="pill" data-bs-target="#button-romance" type="button" role="tab" aria-controls="button-romance" aria-selected="false">로맨스</button>
+          </li>
+          <li role="presentation">
+            <button class="tab-button" id="button-action-tab" data-bs-toggle="pill" data-bs-target="#button-action" type="button" role="tab" aria-controls="button-action" aria-selected="false">액션</button>
+          </li>
+          <li role="presentation">
+            <button class="tab-button" id="button-comedy-tab" data-bs-toggle="pill" data-bs-target="#button-comedy" type="button" role="tab" aria-controls="button-comedy" aria-selected="false">코미디</button>
+          </li>
+        </ul>
+      </div>
+      <div class="keyword-ranking-wrap">
+        <div class="keyword-ranking" id="slider">
+          {% for movie in trending %}
+            <div class="keyword">
+              <p class="keyword-number"></p>
+              <p class="keyword-text">{{ movie.title }}</p>
+            </div>
+          {% endfor %}
+        </div>
+        <button class="keyword-button"><i class="bi bi-chevron-down"></i></button>
+        <div class="keyword-ranking" id="ranking-list">
+          <p class="fw-bold px-3 py-2">인기 검색어</p>
+          {% for movie in trending %}
+            <a href="{% url 'posts:movie_detail' movie.id %}">
+              <div class="keyword">
+                <p class="keyword-number"></p>
+                <p class="keyword-text">{{ movie.title }}</p>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock header %}
+
+{% block content %}
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="button-home" role="tabpanel" aria-labelledby="button-home-tab" tabindex="0">
+      <section class="content container">
+        <div class="section-header">
+          <h2 class="title">인기 상영작</h2>
+        </div>
+        <div class="movie-group">
+          {% for movie in now_playing %}
+            <article class="movie">
+              <a class="movie-link" href="{% url 'posts:movie_detail' movie.id %}">
+                <div class="movie-poster">
+                  <img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" alt="">
+                  <div class="movie-ranking">
+                    <p class="movie-ranking-number"></p>
+                  </div>
+                </div>
+                <div class="movie-info">
+                  <div class="d-flex justify-content-between mb-1 px-1">
+                    <p class="title">{{ movie.title }}</p>
+                    <span class="rating"><i class="bi bi-star-fill"></i>{{ movie.vote_average }}</span>
+                  </div>
+                  <div class="movie-category">
+                    <span># {{ genre_dict|get_genre_name:movie.genre_ids.0 }}</span>
+                    {% if movie.genre_ids.1 %}
+                      <span># {{ genre_dict|get_genre_name:movie.genre_ids.1 }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    
+      <section class="banner container">
+        <div>
+          <h5 class="banner-text">🔍 새로운 영화를 발견해보세요!</h5>
+        </div>
+        <a href="{% url 'posts:movie_detail' random_movie.id %}" class="banner-button">랜덤 영화 보기</a>
+      </section>
+    
+      <section class="content container">
+        <div class="section-header">
+          <h2 class="title">평점이 높은 작품</h2>
+        </div>
+        <div class="movie-group">
+          {% for movie in top_rated %}
+            <article class="movie">
+              <a class="movie-link" href="{% url 'posts:movie_detail' movie.id %}">
+                <div class="movie-poster">
+                  <img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" alt="">
+                  <div class="movie-ranking">
+                    <p class="movie-ranking-number"></p>
+                  </div>
+                </div>
+                <div class="movie-info">
+                  <div class="d-flex justify-content-between mb-1 px-1">
+                    <p class="title">{{ movie.title }}</p>
+                    <sapn class="rating"><i class="bi bi-star-fill"></i>{{ movie.vote_average }}</sapn>
+                  </div>
+                  <div class="movie-category">
+                    <span># {{ genre_dict|get_genre_name:movie.genre_ids.0 }}</span>
+                    {% if movie.genre_ids.1 %}
+                      <span># {{ genre_dict|get_genre_name:movie.genre_ids.1 }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    
+      <section class="content container">
+        <div class="section-header">
+          <h2 class="title">상영예정작</h2>
+        </div>
+        <div class="movie-group">
+          {% for movie in upcoming_movies_dict.values %}
+            <article class="movie">
+              <a class="movie-link" href="{% url 'posts:movie_detail' movie.id %}">
+                <div class="movie-poster">
+                  <img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" alt="">
+                  <div class="d-day">
+                    <p class="d-day-number"><small>D - {{ movie.day }}</small></p>
+                  </div>
+                </div>
+                <div class="movie-info">
+                  <div class="d-flex justify-content-between mb-1 px-1">
+                    <p class="title">{{ movie.title }}</p>
+                  </div>
+                  <div class="movie-category">
+                    <span># {{ genre_dict|get_genre_name:movie.genre_ids.0 }}</span>
+                    {% if movie.genre_ids.1 %}
+                      <span># {{ genre_dict|get_genre_name:movie.genre_ids.1 }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
+    <div class="tab-pane fade" id="button-romance" role="tabpanel" aria-labelledby="button-romance-tab" tabindex="0">
+      <section class="content container">
+        <div class="section-header">
+          <h2 class="title">로맨스</h2>
+        </div>
+        <div class="movie-group">
+          {% for movies in genre_movie_list %}
+            {% for movie in movies %}
+              {% if 10749 in movie.genre_ids %}
+                <article class="movie">
+                  <a class="movie-link" href="{% url 'posts:movie_detail' movie.id %}">
+                    <div class="movie-poster">
+                      <img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" alt="">
+                      {% comment %} <div class="movie-ranking">
+                        <p class="movie-ranking-number"></p>
+                      </div> {% endcomment %}
+                    </div>
+                    <div class="movie-info">
+                      <div class="d-flex justify-content-between mb-1 px-1">
+                        <p class="title">{{ movie.title }}</p>
+                        <sapn class="rating"><i class="bi bi-star-fill"></i>{{ movie.vote_average }}</sapn>
+                      </div>
+                      <div class="movie-category">
+                        <span># {{ genre_dict|get_genre_name:movie.genre_ids.0 }}</span>
+                        {% if movie.genre_ids.1 %}
+                          <span># {{ genre_dict|get_genre_name:movie.genre_ids.1 }}</span>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </a>
+                </article>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
+    <div class="tab-pane fade" id="button-action" role="tabpanel" aria-labelledby="button-action-tab" tabindex="0">
+      <section class="content container">
+        <div class="section-header">
+          <h2 class="title">액션</h2>
+        </div>
+        <div class="movie-group">
+          {% for movies in genre_movie_list %}
+            {% for movie in movies %}
+              {% if 28 in movie.genre_ids %}
+                <article class="movie">
+                  <a class="movie-link" href="{% url 'posts:movie_detail' movie.id %}">
+                    <div class="movie-poster">
+                      <img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" alt="">
+                      {% comment %} <div class="movie-ranking">
+                        <p class="movie-ranking-number"></p>
+                      </div> {% endcomment %}
+                    </div>
+                    <div class="movie-info">
+                      <div class="d-flex justify-content-between mb-1 px-1">
+                        <p class="title">{{ movie.title }}</p>
+                        <sapn class="rating"><i class="bi bi-star-fill"></i>{{ movie.vote_average }}</sapn>
+                      </div>
+                      <div class="movie-category">
+                        <span># {{ genre_dict|get_genre_name:movie.genre_ids.0 }}</span>
+                        {% if movie.genre_ids.1 %}
+                          <span># {{ genre_dict|get_genre_name:movie.genre_ids.1 }}</span>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </a>
+                </article>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+    
+    <div class="tab-pane fade" id="button-comedy" role="tabpanel" aria-labelledby="button-comedy-tab" tabindex="0">
+      <section class="content container">
+        <div class="section-header">
+          <h2 class="title">코미디</h2>
+        </div>
+        <div class="movie-group">
+          {% for movies in genre_movie_list %}
+            {% for movie in movies %}
+              {% if 35 in movie.genre_ids %}
+                <article class="movie">
+                  <a class="movie-link" href="{% url 'posts:movie_detail' movie.id %}">
+                    <div class="movie-poster">
+                      <img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" alt="">
+                      {% comment %} <div class="movie-ranking">
+                        <p class="movie-ranking-number"></p>
+                      </div> {% endcomment %}
+                    </div>
+                    <div class="movie-info">
+                      <div class="d-flex justify-content-between mb-1 px-1">
+                        <p class="title">{{ movie.title }}</p>
+                        <sapn class="rating"><i class="bi bi-star-fill"></i>{{ movie.vote_average }}</sapn>
+                      </div>
+                      <div class="movie-category">
+                        <span># {{ genre_dict|get_genre_name:movie.genre_ids.0 }}</span>
+                        {% if movie.genre_ids.1 %}
+                          <span># {{ genre_dict|get_genre_name:movie.genre_ids.1 }}</span>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </a>
+                </article>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+  </div>
+  
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static 'ranking.js' %}"></script>
+  <script src="{% static 'accounts.js' %}"></script>
+  <script src="{% static 'header.js' %}"></script>
+{% endblock script %}
