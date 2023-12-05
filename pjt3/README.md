@@ -4,7 +4,7 @@
 # 프로젝트 정보
 - KDT 풀스택 개발자 취업캠프(Python) 파이널 프로젝트
 - 개발기간: 2023.5.22 ~ 2023.6.16
-- 깃허브 저장소 주소: https://github.com/go13209/orda
+- 깃허브 저장소 주소: https://github.com/5rda/orda
 - 기술 스택  
     <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
     <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
