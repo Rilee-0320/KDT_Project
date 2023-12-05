@@ -1,0 +1,43 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USINSA</title>
+</head>
+<body>
+  <nav class="bg-black">
+    <div class="flex items-center p-3">
+      <div class="mx-4">
+        <a href="{% url 'reviews:index' %}" class="flex items-center">
+          <span class="self-center text-2xl font-bold text-white">USINSA</span>
+        </a>
+      </div>
+      <div class="grow text-center">
+        <form method="GET" action="{% url 'reviews:search' %}">
+          <input type="text" id="search-navbar" class="w-5/6 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-slate-300 focus:border-slate-300" placeholder="🔍 상품명을 검색하세요." name="query" value="{{ query }}">
+        </form>
+      </div>
+      {% if request.user.is_authenticated %}
+        <div class="mx-4 text-white">
+          <a href="{% url 'accounts:profile' username=request.user.username %}">마이페이지</a>
+        </div>
+        <div class="mx-4 text-white">
+          <a href="{% url 'accounts:basic_logout' %}">로그아웃</a>
+        </div>
+      {% else %}
+        <div class="mx-4 text-white">
+          <a href="{% url 'accounts:basic_login' %}">로그인</a>
+        </div>
+        <div class="mx-4 text-white">
+          <a href="{% url 'accounts:basic_signup' %}">회원가입</a>
+        </div>
+      {% endif %}
+    </div>
+  </nav>
+</body>
+</html>

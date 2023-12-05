@@ -1,0 +1,283 @@
+/* base.html */
+@import url('https://fonts.googleapis.com/earlyaccess/notosanskr.css');
+
+body, th, td, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6,
+	pre, form, fieldset, textarea, blockquote, span, * {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Dovemayo_gothic';
+}
+
+header {
+  height: 70px;
+  background-color: #e9eaed;
+}
+
+#wrap {
+  min-height: calc(100% - 220px);
+}
+
+footer {
+  height: 150px;
+  background-color: #e9eaed;
+}
+
+
+/* index.html */
+
+.index_container {
+  display: flex;
+  justify-content: center;
+}
+
+.main_carousel_img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.category_buttons {
+  display: flex;
+  gap: 5rem;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 0.625rem;
+}
+
+.category_button {
+  width: 50%;
+  text-align: center;
+  font-size: 1.25rem;
+  padding: 0.625rem 1.25rem;
+  margin-right: 1.25rem;
+}
+
+.category_button:hover {
+  border-bottom: 2px solid #000;
+}
+
+.category_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.625rem;
+  margin-bottom: 2.5rem;
+}
+
+.ranking_title {
+  width: 50%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.product_list {
+  text-align: center;
+  margin-top: 0.625rem;
+}
+
+.product_title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* index.html */
+
+/* category.html */
+.category_title {
+  width: 58%;
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+/* category.html */
+
+/* search.html */
+.search_title {
+  width: 58%;
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.search_img {
+  border-radius: 10px;
+}
+
+.search_card {
+  margin-bottom: 20px;
+}
+
+.pagenation_container {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.page-text {
+  color: black;
+}
+
+.active>.page-link {
+  background-color: gray;
+  border-color: gray;
+}
+
+.pagination {
+  --bs-pagination-hover-color: none;
+  --bs-pagination-active-bg: none;
+  --bs-pagination-focus-color: none;
+  --bs-pagination-active-border-color: none;
+  --bs-pagination-focus-box-shadow: none;
+}
+/* search.html */
+
+/* create.html */
+
+.create_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.create_card {
+  width: 33%;
+  display: flex;
+}
+
+.create_text {
+  margin-left: 2rem;
+}
+
+.create_img {
+  width: 200px;
+  height: auto; 
+  max-height: 400px;
+}
+
+.create_brand {
+  font-size: 2rem;
+}
+
+.create_title {
+  font-size: 1.5rem;
+}
+
+.create_form_container {
+  width: 33%;
+  margin-top: 1.75rem;
+}
+
+.content_form {
+  margin-bottom: 2rem;
+}
+
+.review_sumbit {
+  font-size: 1.5rem;
+  text-align: end;
+  margin-bottom: 5rem;
+}
+
+.rating {
+  margin-bottom: 20px;
+}
+
+/* create.html */
+
+/* profile.html */
+.mypage_myreview {
+  margin: 1rem;
+  padding: 0.5rem 0 1rem;
+}
+
+.myreviews {
+  display: block;
+  width: 100%;
+  margin-left: 2rem;
+  height: 200px;
+}
+
+.mypage_img_container{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mypage_img{
+  width: 200px;
+  height: 200px;
+}
+
+.mypage_text{
+  display: inline-block;
+  width: 65%;
+  vertical-align: middle;
+  margin-left: 3rem;
+}
+
+.mypage_review_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mypage_score {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.625rem;
+}
+
+.mypage_score_text {
+  font-size: 1.25rem;
+  margin-left: 0.5rem
+}
+
+.mypage_title {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.mypage_content {
+  font-size: 1rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mypage_text_funtion {
+  display: inline-block;
+  vertical-align: middle;
+  width: 10%;
+  height: 140px;
+  text-align: end;
+}
+
+.mypage_delete {
+  margin-bottom: 5.5rem;
+}
+
+
+.mypage_update {
+  font-size: 1.5rem;
+}
+
+
+.mypage_div_line {
+  color: gray;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* profile.html */
