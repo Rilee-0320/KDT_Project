@@ -23,10 +23,10 @@
     <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
 ## 팀 소개
-### 👑 팀장 : 장하늬 (https://github.com/hany0147)
+### 👑 팀장: 장하늬 (https://github.com/hany0147)
 ![Untitled](https://jjalbang.today/files/jjalbox/2015/03/95_55169fb279861_1943.jpg)
 
-- 역할 : 백엔드
+- 역할: 백엔드
 - 기술 스택  
     <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
     <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
@@ -51,10 +51,10 @@
 
 ---
 
-### 🍊 팀원 : 김규리 (https://github.com/go13209)
+### 🍊 팀원: 김규리 (https://github.com/go13209)
 ![Untitled](ORDA_readme_img/Untitled%2014.png)
 
-- 역할 : 백엔드
+- 역할: 백엔드
 - 기술 스택  
     <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
     <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
@@ -78,10 +78,10 @@
 
 ---
 
-### 🤠 팀원 : 임성주 (https://github.com/Imseongjoo)
+### 🤠 팀원: 임성주 (https://github.com/Imseongjoo)
 ![ExcuseMeKermitGIF.gif](ORDA_readme_img/ExcuseMeKermitGIF.gif)
 
-- 역할 : 백엔드
+- 역할: 백엔드
 - 기술 스택  
     <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
     <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
@@ -100,7 +100,7 @@
 ### 🐱 팀원: 정세호 (https://github.com/seho1278)
 ![274EB53A57F0BBBE24.jpg](ORDA_readme_img/274EB53A57F0BBBE24.jpg)
 
-- 역할 : 프론트엔드
+- 역할: 프론트엔드
 - 기술 스택  
     <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
     <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
@@ -125,10 +125,10 @@
 
 ---
 
-### 😀 팀원 : 최지원 (https://github.com/Choi-jw-96)
+### 😀 팀원: 최지원 (https://github.com/Choi-jw-96)
 ![DogTristeGIF.gif](ORDA_readme_img/DogTristeGIF.gif)
 
-- 역할 : 프론트엔드
+- 역할: 프론트엔드
 - 기술 스택  
     <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
     <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
@@ -143,7 +143,7 @@
     - nav, footer
     - accounts: 오른 기억, 로그인, 회원 가입
     - post 앱 전체 프론트(공동 포함)
-    - mountain앱 : course_all / course_detail / mountain_list / course_list
+    - mountain앱: course_all / course_detail / mountain_list / course_list
 - 프로젝트 후기  
     postgre를 다운 받은 것에 어려움이 있어, 계획에 차질이 있었지만 될 때 까지 묵묵히 기다려준 조원 분들이 있어서 큰일 없이 잘 마칠 수 있었습니다. 익숙하지 않은 툴에 모두 어려움이 있었지만, 서로 도와가며 잘 해결해나가는 모습이 보기 좋았었던 것 같습니다. 오른 기억에서 지도 코드와 밑의 코드를 비동기로 연결 시키는 작업을 시간 안에 완성을 못해서, 이후 자바스크립트를 더 공부하며 연결 할 수 있도록 하고 싶습니다.
 

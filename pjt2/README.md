@@ -22,10 +22,10 @@
     <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
 ## 팀 소개
-### 👑 팀장 : 도용주 (https://github.com/YongJuDo)
-![Alt text](image.png)
+### 👑 팀장: 도용주 (https://github.com/YongJuDo)
+![Alt text](USINSA_readme_img/image.png)
 
-- 역할 : 프론트엔드
+- 역할: 프론트엔드
 - 기술 스택  
     <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
     <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
@@ -52,10 +52,10 @@
 
 ---
 
-### 🍊 팀원 : 김규리 (https://github.com/go13209)
-![Alt text](image-2.png)
+### 🍊 팀원: 김규리 (https://github.com/go13209)
+![Alt text](USINSA_readme_img/image-2.png)
 
-- 역할 : 프론트엔드
+- 역할: 프론트엔드
 - 기술 스택  
     <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
     <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
@@ -80,10 +80,10 @@
 
 ---
 
-### 🥳 팀원 : 이태영 (https://github.com/fantael95)
-![Alt text](image-1.png)
+### 🥳 팀원: 이태영 (https://github.com/fantael95)
+![Alt text](USINSA_readme_img/image-1.png)
 
-- 역할 : 백엔드
+- 역할: 백엔드
 - 기술 스택  
     <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
     <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
@@ -127,7 +127,7 @@
 - 로그인
     - 소셜 로그인(카카오) 포함
     
-    ![Alt text](image-3.png)
+    ![Alt text](USINSA_readme_img/image-3.png)
     
 - 메인 페이지 및 아이템 조회 페이지
     - 데이터 크롤링을 통한 실시간 인기 아이템 소개
@@ -135,20 +135,20 @@
     - 검색을 통한 아이템 조회
     - 페이지네이션
 
-    ![Alt text](image-4.png)
-    ![Alt text](image-5.png)
+    ![Alt text](USINSA_readme_img/image-4.png)
+    ![Alt text](USINSA_readme_img/image-5.png)
     
 - 리뷰 페이지
     - 패션 아이템에 대한 리뷰
         - 사진 첨부 및 별점 기능
     - 리뷰 및 댓글에 대한 좋아요 비동기 처리
 
-    ![Alt text](image-6.png)
+    ![Alt text](USINSA_readme_img/image-6.png)
 
 - 마이페이지
     - 사용자의 팔로워 및 팔로잉 수 확인 가능
     - 팔로잉 기능 비동기 처리
     - 내가 쓴 리뷰 및 '좋아요'를 누른 리뷰 확인
 
-    ![Alt text](image-7.png)
-    ![Alt text](image-8.png)
+    ![Alt text](USINSA_readme_img/image-7.png)
+    ![Alt text](USINSA_readme_img/image-8.png)
