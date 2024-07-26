@@ -41,76 +41,76 @@ class MountainDetailView(LoginRequiredMixin, DetailView):
         most_liked_review = reviews.annotate(num_likes=Count('like_users')).order_by('-num_likes').first()
 
         # 기타
-        now_weather_data = self.get_weather_forecast()
+        # now_weather_data = self.get_weather_forecast()
 
-        tem = now_weather_data['기온']
-        hum = now_weather_data['습도']
-        sky = now_weather_data['하늘상태']
-        rain = now_weather_data['강수량']
-        vec = now_weather_data['풍향']
-        wsd = now_weather_data['풍속']
-        now_time = now_weather_data['현재시각']
+        # tem = now_weather_data['기온']
+        # hum = now_weather_data['습도']
+        # sky = now_weather_data['하늘상태']
+        # rain = now_weather_data['강수량']
+        # vec = now_weather_data['풍향']
+        # wsd = now_weather_data['풍속']
+        # now_time = now_weather_data['현재시각']
 
-        sun = ['0700', '0800', '0900', '1000', '1100', '1200', '1300', '1400', '1500', '1600', '1700', '1800', '1900']
-        moon = ['2000', '2100', '2200', '2300', '0000', '0100', '0200', '0300', '0400', '0500', '0600']
+        # sun = ['0700', '0800', '0900', '1000', '1100', '1200', '1300', '1400', '1500', '1600', '1700', '1800', '1900']
+        # moon = ['2000', '2100', '2200', '2300', '0000', '0100', '0200', '0300', '0400', '0500', '0600']
         
-        air_data = self.get_air()
+        # air_data = self.get_air()
 
-        def parse_data(data_str):
-            parsed_data = {}
-            entries = data_str.split(',')
-            for entry in entries:
-                key, value = entry.split(':')
-                parsed_data[key.strip()] = value.strip()
-            return parsed_data
+        # def parse_data(data_str):
+        #     parsed_data = {}
+        #     entries = data_str.split(',')
+        #     for entry in entries:
+        #         key, value = entry.split(':')
+        #         parsed_data[key.strip()] = value.strip()
+        #     return parsed_data
         
-        fine_dust = parse_data(air_data['미세먼지'])
-        ozone = parse_data(air_data['오존'])
+        # fine_dust = parse_data(air_data['미세먼지'])
+        # ozone = parse_data(air_data['오존'])
 
-        fine_dust['서울특별시'] = fine_dust.pop('서울')
-        fine_dust['제주도'] = fine_dust.pop('제주')
-        fine_dust['전라남도'] = fine_dust.pop('전남')
-        fine_dust['전라북도'] = fine_dust.pop('전북')
-        fine_dust['광주광역시'] = fine_dust.pop('광주')
-        fine_dust['경상남도'] = fine_dust.pop('경남')
-        fine_dust['경상북도'] = fine_dust.pop('경북')
-        fine_dust['울산광역시'] = fine_dust.pop('울산')
-        fine_dust['대구광역시'] = fine_dust.pop('대구')
-        fine_dust['부산광역시'] = fine_dust.pop('부산')
-        fine_dust['충청남도'] = fine_dust.pop('충남')
-        fine_dust['충청북도'] = fine_dust.pop('충북')
-        fine_dust['세종특별자치시'] = fine_dust.pop('세종')
-        fine_dust['대전광역시'] = fine_dust.pop('대전')
-        fine_dust['강원도'] = fine_dust.pop('영동')
-        fine_dust['경기도'] = fine_dust.pop('경기남부')
-        fine_dust['인천광역시'] = fine_dust.pop('인천')
+        # fine_dust['서울특별시'] = fine_dust.pop('서울')
+        # fine_dust['제주도'] = fine_dust.pop('제주')
+        # fine_dust['전라남도'] = fine_dust.pop('전남')
+        # fine_dust['전라북도'] = fine_dust.pop('전북')
+        # fine_dust['광주광역시'] = fine_dust.pop('광주')
+        # fine_dust['경상남도'] = fine_dust.pop('경남')
+        # fine_dust['경상북도'] = fine_dust.pop('경북')
+        # fine_dust['울산광역시'] = fine_dust.pop('울산')
+        # fine_dust['대구광역시'] = fine_dust.pop('대구')
+        # fine_dust['부산광역시'] = fine_dust.pop('부산')
+        # fine_dust['충청남도'] = fine_dust.pop('충남')
+        # fine_dust['충청북도'] = fine_dust.pop('충북')
+        # fine_dust['세종특별자치시'] = fine_dust.pop('세종')
+        # fine_dust['대전광역시'] = fine_dust.pop('대전')
+        # fine_dust['강원도'] = fine_dust.pop('영동')
+        # fine_dust['경기도'] = fine_dust.pop('경기남부')
+        # fine_dust['인천광역시'] = fine_dust.pop('인천')
 
-        ozone['서울특별시'] = ozone.pop('서울')
-        ozone['제주도'] = ozone.pop('제주')
-        ozone['전라남도'] = ozone.pop('전남')
-        ozone['전라북도'] = ozone.pop('전북')
-        ozone['광주광역시'] = ozone.pop('광주')
-        ozone['경상남도'] = ozone.pop('경남')
-        ozone['경상북도'] = ozone.pop('경북')
-        ozone['울산광역시'] = ozone.pop('울산')
-        ozone['대구광역시'] = ozone.pop('대구')
-        ozone['부산광역시'] = ozone.pop('부산')
-        ozone['충청남도'] = ozone.pop('충남')
-        ozone['충청북도'] = ozone.pop('충북')
-        ozone['세종특별자치시'] = ozone.pop('세종')
-        ozone['대전광역시'] = ozone.pop('대전')
-        ozone['강원도'] = ozone.pop('영동')
-        ozone['경기도'] = ozone.pop('경기남부')
-        ozone['인천광역시'] = ozone.pop('인천')
+        # ozone['서울특별시'] = ozone.pop('서울')
+        # ozone['제주도'] = ozone.pop('제주')
+        # ozone['전라남도'] = ozone.pop('전남')
+        # ozone['전라북도'] = ozone.pop('전북')
+        # ozone['광주광역시'] = ozone.pop('광주')
+        # ozone['경상남도'] = ozone.pop('경남')
+        # ozone['경상북도'] = ozone.pop('경북')
+        # ozone['울산광역시'] = ozone.pop('울산')
+        # ozone['대구광역시'] = ozone.pop('대구')
+        # ozone['부산광역시'] = ozone.pop('부산')
+        # ozone['충청남도'] = ozone.pop('충남')
+        # ozone['충청북도'] = ozone.pop('충북')
+        # ozone['세종특별자치시'] = ozone.pop('세종')
+        # ozone['대전광역시'] = ozone.pop('대전')
+        # ozone['강원도'] = ozone.pop('영동')
+        # ozone['경기도'] = ozone.pop('경기남부')
+        # ozone['인천광역시'] = ozone.pop('인천')
 
 
-        split_region = (mountain.region).split()
-        region = split_region[0]
+        # split_region = (mountain.region).split()
+        # region = split_region[0]
 
-        special_chars = [',', '/']
-        for char in special_chars:
-            if region.endswith(char):
-                region = region[:-1]
+        # special_chars = [',', '/']
+        # for char in special_chars:
+        #     if region.endswith(char):
+        #         region = region[:-1]
 
         context = {
             # 산 관련
@@ -123,21 +123,21 @@ class MountainDetailView(LoginRequiredMixin, DetailView):
             'reviews': reviews,
             'most_liked_review': most_liked_review,
 
-            # 날씨
-            'tem': tem,
-            'hum': hum,
-            'sky': sky,
-            'rain': rain,
-            'vec': vec,
-            'wsd': wsd,
-            'now_time': now_time,
-            'sun': sun,
-            'moon': moon,
+            # # 날씨
+            # 'tem': tem,
+            # 'hum': hum,
+            # 'sky': sky,
+            # 'rain': rain,
+            # 'vec': vec,
+            # 'wsd': wsd,
+            # 'now_time': now_time,
+            # 'sun': sun,
+            # 'moon': moon,
 
-            # 미세먼지, 오존
-            'region': region,
-            'fine_dust': fine_dust,
-            'ozone': ozone,
+            # # 미세먼지, 오존
+            # 'region': region,
+            # 'fine_dust': fine_dust,
+            # 'ozone': ozone,
         }
         
         return context

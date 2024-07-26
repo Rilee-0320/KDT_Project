@@ -70,4 +70,4 @@ urllib3==2.0.2
 wcwidth==0.2.6
 xmltodict==0.13.0
 yarl==1.9.2
-GDAL @ file:///C:\Users\Rilee\OneDrive\Desktop\KDT_Project\PJT-03(orda)\GDAL-3.4.3-cp39-cp39-win_amd64.whl
+GDAL @ file:///C:\Users\Rilee\OneDrive\Desktop\project\KDT_Project\pjt3\GDAL-3.4.3-cp39-cp39-win_amd64.whl
