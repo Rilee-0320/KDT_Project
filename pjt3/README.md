@@ -39,41 +39,41 @@
 
   - 소셜 로그인(카카오, 네이버) 포함
   - 로그인시 유저가 보고 있던 이전 페이지로 이동  
-    <img src="./ORDA_readme_img/img_6.png">
+    <img src="./ORDA_readme_img/img_1.png">
 
 - 산 탐색
   - 지역(시/군/구)과 태그로 필터링
   - 탐색 결과를 좋아요순, 리뷰순, 조회순, 고도순, 가나다순 정렬
-    <img src="./ORDA_readme_img/img_7.png">
-    <img src="./ORDA_readme_img/img_8.png">
+    <img src="./ORDA_readme_img/img_2.png">
+    <img src="./ORDA_readme_img/img_3.png">
 - 100대 명산
   - 좋아요순, 리뷰순, 조회순, 고도순, 가나다순 정렬  
-    <img src="./ORDA_readme_img/img_9.png">
+    <img src="./ORDA_readme_img/img_4.png">
 - 산 상세정보
   - 산의 상세정보(산 이름, 지역, 고도, 소개글) 제공
   - 해당 산 관련 최신 뉴스 및 해당 지역의 날씨 정보 제공  
-    <img src="./ORDA_readme_img/img_10.png">
+    <img src="./ORDA_readme_img/img_5.png">
 - 날씨 페이지
   - 현재 시간 기준 5일 후까지의 날씨 정보 제공  
-    <img src="./ORDA_readme_img/img_11.png">
+    <img src="./ORDA_readme_img/img_6.png">
 - 등산 코스
   - 지역별 코스 필터링
   - 북마크순, 난이도순, 거리순, 소요시간순, 가나다순 정렬  
-    <img src="./ORDA_readme_img/img_12.png">
+    <img src="./ORDA_readme_img/img_7.png">
 - 코스 상세 리스트
   - 코스별 상세정보(코스명, 지도, 총거리, 소요시간, 난이도)
   - 코스별 경유지 표시(해제 가능)
   - 코스 GPX 파일 메일 전송
-    <img src="./ORDA_readme_img/img_13.png">
-    <img src="./ORDA_readme_img/img_14.png">
+    <img src="./ORDA_readme_img/img_8.png">
+    <img src="./ORDA_readme_img/img_9.png">
 - 마이코스
 
   - 조회수가 많은 게시글 / 좋아요가 많은 게시글 / 전체 게시글  
-    <img src="./ORDA_readme_img/img_15.png">
+    <img src="./ORDA_readme_img/img_10.png">
 
 - 인증샷
   - 사진이 있는 게시글의 이미지만 조회  
-    <img src="./ORDA_readme_img/img_16.png">
+    <img src="./ORDA_readme_img/img_11.png">
 - 오른기억
   - 유저가 다녀온 코스 기록
   - 카카오맵에 산 커서 표시
@@ -82,13 +82,11 @@
   - 각 코스 이름 클릭시 코스 상세정보 창 팝업
   - 코스 상세정보(코스명, 총거리, 소요시간, 난이도) 제공
   - 코스 GPX 파일 메일 전송  
-    <img src="./ORDA_readme_img/img_17.png">
+    <img src="./ORDA_readme_img/img_12.png">
 
 ### 팀 소개
 
 #### 팀장: 장하늬 (https://github.com/hany0147)
-
-<img src="./ORDA_readme_img/img_1.png" height="200">
 
 - 역할: 백엔드
 - 기술 스택  
@@ -121,8 +119,6 @@
 
 #### 팀원: 김규리 (https://github.com/go13209)
 
-<img src="./ORDA_readme_img/img_2.png" height="200">
-
 - 역할: 백엔드
 - 기술 스택  
   <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
@@ -151,8 +147,6 @@
 
 #### 팀원: 임성주 (https://github.com/Imseongjoo)
 
-<img src="./ORDA_readme_img/img_3.gif" height="200">
-
 - 역할: 백엔드
 - 기술 스택  
   <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
@@ -174,8 +168,6 @@
 ---
 
 #### 팀원: 정세호 (https://github.com/seho1278)
-
-<img src="./ORDA_readme_img/img_4.png" height="200">
 
 - 역할: 프론트엔드
 - 기술 스택  
@@ -206,8 +198,6 @@
 ---
 
 #### 팀원: 최지원 (https://github.com/Choi-jw-96)
-
-<img src="./ORDA_readme_img/img_5.gif" height="200">
 
 - 역할: 프론트엔드
 - 기술 스택  
