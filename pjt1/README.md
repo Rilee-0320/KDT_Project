@@ -1,26 +1,75 @@
 # Cinephile
+
 <p align="center"><img src=".\cinephile_readme_img\image.png" height="200"></p>
 
-# 프로젝트 정보
+## 프로젝트 정보
+
 - KDT 풀스택 개발자 취업캠프(Python) 세미 프로젝트1
 - 개발기간: 2023.4.26 ~ 2023.5.8
 - 깃허브 저장소 주소: https://github.com/nihelv/cinephile
-- 사이트 주소: https://port-0-cinephile-1maxx2algn9knde.sel3.cloudtype.app/
-- 기술 스택  
-  <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
-  <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
-  <img src="https://img.shields.io/badge/sqlite-003B57?style=for-the-badge&logo=sqlite&logoColor=white">
-  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-  <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
-  <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
-  <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
-  <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">
-  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+- 팀원
+  - 백엔드: [김규리](#팀원-김규리-httpsgithubcomgo13209), [도용주](#팀원-도용주-httpsgithubcomyongjudo)
+  - 프론트엔드: [추연선](#팀장-추연선-httpsgithubcomnihelvo), [최은비](#팀원-최은비-httpsgithubcomrloldl-c)
 
-## 팀 소개
-### 👑 팀장: 추연선 (https://github.com/nihelvo)
-<img src=".\cinephile_readme_img\image_1.png" height="200">
+## 프로젝트 소개
+
+"Cinephile"은 영화광, 영화에 매우 관심이 많고 열정적이며 영화에 대해 많이 알고 있는 사람을 뜻합니다. 그 이름처럼, Cinephile은 TMDB API를 기반으로 하여 영화와 관련된 다양한 정보를 제공하여 사용자들이 영화를 더 깊이 있게 즐길 수 있도록 돕는 웹사이트입니다.
+
+### 주요 기술
+
+- 언어: Python, JavaScript
+- 프레임워크: Django
+- 데이터베이스: SQLite
+- 프론트엔드: HTML, CSS, JavaScript, Bootstrap
+- 협업 도구: Notion, GitHub
+
+### 개발 사항
+
+- 회원 관리: 로그인, 로그아웃, 회원가입, 회원정보 수정 기능 구현
+- 사용자 맞춤 정보 제공: 최신 상영작과 상영 예정작 정보 제공, 명작 영화 소개, 랜덤 영화 추천 기능, 영화 및 인물 검색 기능 구현
+- 유저 간 소셜 기능: 영화에 대한 리뷰 작성 및 유저간 팔로우, 리뷰/댓글 좋아요 기능을 통한 커뮤니티 기능 강화
+
+### 화면 구성 및 주요 기능
+
+- 메인 페이지
+
+  - 인기 상영작 소개
+  - 랜덤 영화 추천
+  - 명작 영화 소개
+  - 상영예정작 소개
+  - 영화 및 인물 검색  
+    <img src=".\cinephile_readme_img\image_1.png">
+
+- 회원가입 / 로그인 / 로그아웃
+
+  - 회원가입 / 로그인 모달창
+  - 회원가입 / 로그인 / 로그아웃 비동기 처리  
+    <img src=".\cinephile_readme_img\image_2.png" width="400">
+    <img src=".\cinephile_readme_img\image_3.png" width="400">
+
+- 마이페이지
+
+  - 유저간 팔로우
+  - 팔로워 / 팔로잉 수 표시
+    - 팔로워 / 팔로잉 모달창
+  - 해당 사용자가 쓴 영화 후기 및 댓글 표시  
+    <img src=".\cinephile_readme_img\image_4.png">
+    <img src=".\cinephile_readme_img\image_5.png" width="800">
+
+- 영화 후기 작성 / 수정 페이지
+
+  - 영화 평점 기능  
+    <img src=".\cinephile_readme_img\image_6.png">
+
+- 영화 후기 페이지
+  - 영화 후기 수정 / 삭제
+  - 댓글 작성 / 삭제
+  - 영화 후기 및 댓글에 대한 좋아요  
+    <img src=".\cinephile_readme_img\image_7.png">
+
+### 팀 소개
+
+#### 팀장: 추연선 (https://github.com/nihelvo)
 
 - 역할: 프론트엔드
 - 기술 스택  
@@ -42,8 +91,8 @@
   현재 실력에 자신이 없었고, 첫 프로젝트라는 점에서 막연한 두려움을 가지고 시작했습니다. 실제로 어려웠던 부분이나 제가 부족함을 느낀 부분이 많은데, 오류가 생기거나 예상 밖의 상황을 만났을 때 팀원들과 의견을 나누고 해결방안을 찾을 수 있어 좋았습니다. 다들 QA에 진심이시고, 이상이 높아서 만족할만한 결과를 얻을 수 있었다고 생각합니다. 여러 모로 감사해요ㅠㅠㅠ
 
 ---
-### 🐢 팀원: 최은비 (https://github.com/rloldl-c)
-<img src=".\cinephile_readme_img\image_2.gif" height="200">
+
+#### 팀원: 최은비 (https://github.com/rloldl-c)
 
 - 역할: 프론트엔드
 - 기술 스택  
@@ -72,8 +121,7 @@
 
 ---
 
-### 🍊 팀원: 김규리 (https://github.com/go13209)
-<img src=".\cinephile_readme_img\image_3.gif" height="200">
+#### 팀원: 김규리 (https://github.com/go13209)
 
 - 역할: 백엔드
 - 기술 스택  
@@ -102,8 +150,7 @@
 
 ---
 
-### 🐲 팀원: 도용주 (https://github.com/YongJuDo)
-<img src=".\cinephile_readme_img\image_4.gif" height="200">
+#### 팀원: 도용주 (https://github.com/YongJuDo)
 
 - 역할: 백엔드
 - 기술 스택  
@@ -127,51 +174,3 @@
   - 영화 후기 평점 기능
 - 프로젝트 후기  
   약 10일이라는 짧은 기간 동안 팀 프로젝트를 진행하면서 팀원 분들께 많은 것을 배울 수 있었고, 부족한 부분도 많이 느껴 더욱 열심히 공부해야겠다고 생각했습니다. 또한 기능을 구현하면서 막히고 힘들 때도 많았지만 문제를 해결해 나가는 과정에서 뿌듯함을 느꼈습니다. 짧은 기간 동안 함께해 준 팀원분들께 감사합니다!!
-
-# 프로젝트 소개
-
-**Cinephile - 영화의 예술, 사용자의 열정을 담다**
-
-**Cinephile은,**
-
-- 영화광, 영화에 매우 관심이 많고 열정적이며 영화에 대해 많이 알고 있는 사람을 뜻합니다. 그 이름에서부터 나타나듯이, Cinephile은 영화를 예술로서 이해하고, 영화에 대한 높은 관심과 열정을 지닌 사용자들을 위한 플랫폼입니다. TMDB API를 기반으로 하여 사용자들에게 다양한 기능을 제공하여 영화를 더 깊이 있게 즐길 수 있는 기회를 제공합니다.
-
-**주요 기능**
-- 영화 리뷰와 소통: 사용자들이 영화 후기를 작성하고, 다른 사용자들과 해당 후기에 댓글을 달거나 좋아요를 누를 수 있습니다. 이를 통해 영화에 대한 다양한 의견을 나눌 수 있으며, 사용자 간의 소통이 활성화됩니다.
-- 팔로우 기능: 원하는 사용자를 팔로우하여 그들이 작성한 영화 후기나 댓글을 볼 수 있습니다.
-- 영화 소개와 추천: 사이트 메인에서는 최신 상영작과 명작 영화를 소개하여 사용자들이 항상 업데이트된 영화 소식을 받아볼 수 있습니다. 랜덤 영화 추천 기능을 통해 새로운 영화 경험을 만들어보세요.
-- 상영 예정작 소개: 상영 예정작을 소개함으로써 사용자들이 기대하는 영화에 대한 정보를 미리 확인할 수 있습니다.
-- 검색 기능: 영화 및 인물 검색을 통해 사용자들은 원하는 영화나 배우에 대한 자세한 정보를 얻을 수 있습니다.
-
-## 화면 구성 및 주요 기능
-- 메인 페이지
-  - 인기 상영작 소개
-  - 랜덤 영화 추천
-  - 명작 영화 소개
-  - 상영예정작 소개
-  - 영화 및 인물 검색  
-<img src=".\cinephile_readme_img\image_7.png">
-
-- 회원가입 / 로그인 / 로그아웃
-  - 회원가입 / 로그인 모달창
-  - 회원가입 / 로그인 / 로그아웃 비동기 처리  
-<img src=".\cinephile_readme_img\image_5.png" width="400">
-<img src=".\cinephile_readme_img\image_6.png" width="400">
-
-- 마이페이지
-  - 유저간 팔로우
-  - 팔로워 / 팔로잉 수 표시
-    - 팔로워 / 팔로잉 모달창
-  - 해당 사용자가 쓴 영화 후기 및 댓글 표시  
-<img src=".\cinephile_readme_img\image_8.png">
-<img src=".\cinephile_readme_img\image_9.png" width="800">
-
-- 영화 후기 작성 / 수정 페이지
-  - 영화 평점 기능  
-<img src=".\cinephile_readme_img\image_10.png">
-
-- 영화 후기 페이지
-  - 영화 후기 수정 / 삭제
-  - 댓글 작성 / 삭제
-  - 영화 후기 및 댓글에 대한 좋아요  
-<img src=".\cinephile_readme_img\image_11.png">
